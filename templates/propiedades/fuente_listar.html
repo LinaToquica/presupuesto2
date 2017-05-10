@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content%}
+	
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			
+			<td>Nombre de fuente</td>
+			
+		</tr>
+	</thead>
+	<tbody>	
+		{% if object_list %}
+		{% for fuente in object_list %}
+		<tr>
+			<td>{{ fuente.nombre_fuente }}</td>
+			
+			
+			<td>
+				<a class="btn btn-primary" href="{% url 'propiedades:fuente_actualizar' fuente.id %}">Editar</a>
+				<a class="btn btn-danger" href="{% url 'propiedades:fuente_eliminar' fuente.id %}">Eliminar</a>
+			</td>
+			
+		</tr>
+		{% endfor %}
+
+		{% else %}
+		<h1>No hay registros de Fuentes</h1>
+
+		{% endif %}
+	</tbody>
+</table>
+
+<a class="btn btn-primary" href="{% url 'propiedades:fuente_crear'  %}">Crear </a>
+{% endblock %}

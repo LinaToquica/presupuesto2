@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content%}
+	
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>Codigo sector</td>
+			<td>Nombre del sector</td>
+			
+		</tr>
+	</thead>
+	<tbody>	
+		{% if object_list %}
+		{% for sector in object_list %}
+		<tr>
+			<td>{{ sector.codigo_sector }}</td>
+			<td>{{ sector.nombre_sector }}</td>
+			
+			<td>
+				<a class="btn btn-primary" href="{% url 'propiedades:sector_actualizar' sector.codigo_sector %}">Editar</a>
+				<a class="btn btn-danger" href="{% url 'propiedades:sector_eliminar' sector.codigo_sector %}">Eliminar</a>
+			</td>
+			
+		</tr>
+		{% endfor %}
+
+		{% else %}
+		<h1>No hay registros de sectores</h1>
+
+		{% endif %}
+	</tbody>
+</table>
+<a class="btn btn-primary" href="{% url 'propiedades:sector_crear'  %}">Crear </a>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content%}
+	
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			
+			<td>Nombre Unidad Ejecutora</td>
+			
+		</tr>
+	</thead>
+	<tbody>	
+		{% if object_list %}
+		{% for unidad in object_list %}
+		<tr>
+			<td>{{ unidad.nombre_unidad }}</td>
+			
+			
+			<td>
+				<a class="btn btn-primary" href="{% url 'propiedades:unidad_ejecutora_actualizar' unidad.id %}">Editar</a>
+				<a class="btn btn-danger" href="{% url 'propiedades:unidad_ejecutora_eliminar' unidad.id %}">Eliminar</a>
+			</td>
+			
+		</tr>
+		{% endfor %}
+
+		{% else %}
+		<h1>No hay registros de Unidades ejecutoras</h1>
+
+		{% endif %}
+
+	</tbody>
+</table>
+
+<a class="btn btn-primary" href="{% url 'propiedades:unidad_ejecutora_crear'  %}">Crear </a>
+{% endblock %}

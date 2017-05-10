@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content%}
+	
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>Nombre Sit</td>
+			
+			
+		</tr>
+	</thead>
+	<tbody>	
+		{% if object_list %}
+		{% for sit in object_list %}
+		<tr>
+			<td>{{ sit.nombre_sit }}</td>
+			
+			
+			<td>
+				<a class="btn btn-primary" href="{% url 'propiedades:sit_actualizar' sit.id %}">Editar</a>
+				<a class="btn btn-danger" href="{% url 'propiedades:sit_eliminar' sit.id %}">Eliminar</a>
+			</td>
+			
+		</tr>
+		{% endfor %}
+
+		{% else %}
+		<h1>No hay registros de Sits</h1>
+
+		{% endif %}
+	</tbody>
+</table>
+
+<a class="btn btn-primary" href="{% url 'propiedades:sit_crear'  %}">Crear </a>
+{% endblock %}

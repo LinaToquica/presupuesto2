@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+
+	
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>año</td>
+			<td>sector</td>
+			<td>Unidad ejecutora</td>
+			<td>prog</td>
+			<td>subp</td>
+			<td>proy</td>
+			<td>subp2</td>
+			<td>rec</td>
+			<td>sit</td>
+			<td>nombre</td>
+			<td>apropiacion inicial</td>
+			<td>apropiacion vigente</td>
+			<td>compromiso</td>
+			<td>obligaciones</td>
+			<td>pagos</td>
+			<td>fuente</td>
+			
+			
+		</tr>
+	</thead>
+	<tbody>	
+		{% if object_list %}
+		{% for proyecto in object_list %}
+		<tr>
+
+			<td>{{ proyecto.anio }}</td>
+			<td>{{ proyecto.sector }}</td>
+			<td>{{ proyecto.unidad_ejecutora }}</td>
+			<td>{{ proyecto.prog }}</td>
+			<td>{{ proyecto.subp }}</td>
+			<td>{{ proyecto.proy }}</td>
+			<td>{{ proyecto.subp2 }}</td>
+			<td>{{ proyecto.rec }}</td>
+			<td>{{ proyecto.sit }}</td>
+			<td>{{ proyecto.nombre_proyecto }}</td>
+			<td>{{ proyecto.apropiacion_inicial }}</td>
+			<td>{{ proyecto.apropiacion_vigente }}</td>
+			<td>{{ proyecto.compromiso }}</td>
+			<td>{{ proyecto.obligaciones }}</td>
+			<td>{{ proyecto.pagos }}</td>
+			<td>{{ proyecto.fuente }}</td>
+
+			
+			<td>
+				<a class="btn btn-primary" href="{% url 'proyectos:proyecto_actualizar' proyecto.id %}">Editar</a>
+				<a class="btn btn-danger" href="{% url 'proyectos:proyecto_eliminar' proyecto.id %}">Eliminar</a>
+			</td>
+			
+		</tr>
+		{% endfor %}
+
+		{% else %}
+		<h1>No hay registros de proyectos aun.</h1>
+
+		{% endif %}
+	</tbody>
+</table>
+<a class="btn btn-primary" href="{% url 'proyectos:proyecto_crear'  %}">Crear </a>
+{% endblock %}
+
+
